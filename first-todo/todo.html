@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Javascript DOM</h1>
+    </div>
+    <div class="content">
+      <form id="todo-form">
+        <div>
+          <label for="todo-input">할일</label>
+          <input type="text" id="todo-input" />
+        </div>
+        <button class="submit">저장</button>
+      </form>
+      <p id="warning">할일을 입력하세요</p>
+      <ul id="todo-list">
+        <!-- <li class="item">1.할일</li>
+        <li class="item">2.할일</li>
+        <li class="item">3.할일</li>
+        <li class="item">4.할일</li> -->
+      </ul>
+    </div>
+    <script>
+      const $$todo = document.querySelector('#todo-list');
+      // $$todo.firstElementChild.textContent = 'hello';
+      // $$todo.firstElementChild.remove();
+      // $$todo.second
+      // $$todo.lastElementChild.textContent = 'hi';
+
+      const $submit = document.querySelector('.submit');
+      const $todoinput = document.querySelector('#todo-input');
+      const $warning = document.querySelector('#warning');
+
+      $submit.addEventListener('click', onSubmit);
+
+      function onSubmit(e) {
+        e.preventDefault();
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode($todoinput.value));
+        console.log(li);
+        $$todo.appendChild(li);
+        $todoinput.value = ''; //빈칸으로 만든다
+
+        if ($todoinput.value === '') {
+          $warning.style.display = 'block';
+          setTimeout(() => ($warning.style.display = 'none'), 2000);
+          return;
+        }
+      }
+    </script>
+  </body>
+</html>
